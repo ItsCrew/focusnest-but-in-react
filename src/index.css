@@ -1,0 +1,18 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background-dark: #1e2d24;
+  --color-font-dark: #ededed;
+  --color-headings-dark: #6b8f71;
+  --color-navbg-dark: #2d3c33;
+  --color-background-version-dark: #6b8f7126;
+  --color-border-version-dark: #6b8f71b3;
+  --color-font-version-dark: #a3b18a;
+  --color-navigation-buttons-dark: #bbdbc1;
+
+  /* Light mode */
+
+  --color-font-version-light: #4b6b58;
+  --color-background-version-light: #6b8f711f;
+  --color-border-version-light: #6b8f71b3;
+}
