@@ -4,7 +4,7 @@ import { Menu } from 'lucide-react'
 
 
 const Sidebar = () => {
-    const navButtonClass = 'bg-navigation-buttons-dark text-black cursor-pointer w-40 h-10 rounded-full flex items-center justify-center'
+    const navButtonClass = 'bg-navigation-buttons-dark text-black cursor-pointer w-50 h-9.5 rounded-full flex items-center justify-center hover:bg-navigation-hover-dark transition-all duration-300 ease hover:text-font-dark hover:-translate-y-1.25'
 
     return (
         <div className='flex py-4 px-4'>
@@ -14,7 +14,7 @@ const Sidebar = () => {
                     <p className='text-xs bg-background-version-dark px-2.5 py-1 rounded-full text-font-version-dark border border-border-version-dark'>v2.2.1</p>
                     <hr className='w-26 mt-2 ' />
                 </div>
-                <div className='flex flex-col gap-7 justify-center items-center py-2'>
+                <div className='flex flex-col gap-7 justify-center items-center py-2 text-base font-semibold'>
                 <Link className={navButtonClass} to='/Home'>Home</Link>
                 <Link className={navButtonClass} to='/Tasks'>Tasks</Link>
                 <Link className={navButtonClass} to='/Notes'>Notes</Link>
