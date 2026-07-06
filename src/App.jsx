@@ -3,6 +3,7 @@ import Navbar from './Components/About/Navbar'
 import Page from './Components/About/Page'
 import { Route, Routes } from 'react-router-dom'
 import Home from './Pages/Home'
+import Tasks from './Pages/Tasks'
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
             }
           />
       <Route path='/home' element={<Home/>}/>
+      <Route path='/tasks' element={<Tasks/>}/>
     </Routes>
     </div>
   )
