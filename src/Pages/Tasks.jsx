@@ -4,9 +4,11 @@ import Theme from '../Components/Global/Theme'
 
 const Tasks = () => {
   return (
-    <div>
+    <div className='flex'>
         <Sidebar/>
-        <Theme/>
+        <div className='flex-1'>
+          <Theme/>
+        </div>
     </div>
   )
 }
