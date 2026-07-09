@@ -1,6 +1,7 @@
 import React from 'react'
 import Timer from '../Components/Home/TimerNav'
 import TimerDisplay from '../Components/Home/TimerDisplay'
+import ActiveTask from '../Components/Home/ActiveTask'
 
 const Home = () => {
   return (
@@ -8,6 +9,7 @@ const Home = () => {
       <div className='flex flex-col items-center'>
         <Timer/>
         <TimerDisplay/>
+        <ActiveTask/>
       </div>
     </div>
   )
