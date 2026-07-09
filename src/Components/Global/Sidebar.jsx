@@ -1,28 +1,16 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Link, Links } from 'react-router-dom'
 import { Menu } from 'lucide-react'
 
 
 // TODO - Make is so the sidebar is actually hidden rather then just invisible. Since it can still be accessed by using tab. Not a big a deal though
 
-const Sidebar = () => {
-    const [isOpen, setIsOpen] = useState(() => {
-        const savedState = localStorage.getItem('Sidebar');
-        return savedState !== null ? savedState === 'true' : true;
-    })
-
-    const toggleSidebar = () => {
-        setIsOpen((prev) => {
-            const nextState = !prev;
-            localStorage.setItem("Sidebar", String(nextState))
-            return nextState;
-        })
-    }
+const Sidebar = ({ isOpen, onToggle }) => {
 
     const navButtonClass = 'bg-navigation-buttons-dark text-black cursor-pointer w-50 h-9.5 rounded-full flex items-center justify-center hover:bg-navigation-hover-dark transition-all duration-300 ease hover:text-font-dark hover:-translate-y-1.25'
 
     return (
-        <div className='flex py-4 px-4 items-start'>
+        <div className='fixed top-0 left-0 z-20 flex py-4 px-4 items-start'>
             <div className={`flex flex-col gap-6 h-[95vh] items-center text-lg bg-navbg-dark rounded-2xl transition-all duration-300 ease-in-out overflow-hidden
 
                 ${isOpen
@@ -45,7 +33,7 @@ const Sidebar = () => {
                     </div>
                 </div>
             </div>
-            <Menu onClick={toggleSidebar} size={32} className='m-2 cursor-pointer shrink-0' />
+            <Menu onClick={onToggle} size={32} className='m-2 cursor-pointer shrink-0' />
         </div>
     )
 }

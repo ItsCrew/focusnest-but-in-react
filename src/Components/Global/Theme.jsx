@@ -2,10 +2,8 @@ import React, { useState } from 'react'
 import { Moon, Sun } from 'lucide-react'
 
 const Theme = () => {
-  // 1. Change state to a boolean (false = light mode, true = dark mode)
   const [isDarkMode, setIsDarkMode] = useState(false)
-
-  // 2. Toggle the boolean state
+  
   const toggleTheme = () => {
     setIsDarkMode(!isDarkMode)
   }
