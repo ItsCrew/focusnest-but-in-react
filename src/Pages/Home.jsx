@@ -2,6 +2,7 @@ import React from 'react'
 import Timer from '../Components/Home/TimerNav'
 import TimerDisplay from '../Components/Home/TimerDisplay'
 import ActiveTask from '../Components/Home/ActiveTask'
+import TimerControls from '../Components/Home/TimerControls'
 
 const Home = () => {
   return (
@@ -10,6 +11,7 @@ const Home = () => {
         <Timer/>
         <TimerDisplay/>
         <ActiveTask/>
+        <TimerControls/>
       </div>
     </div>
   )
