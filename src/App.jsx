@@ -6,6 +6,7 @@ import Home from './Pages/Home'
 import Tasks from './Pages/Tasks'
 import Soon from './Pages/Soon'
 import Settings from './Pages/Settings'
+import Appearance from './Pages/Appearance'
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
           <Route path='/tasks' element={<Tasks />} />
           <Route path='/notes' element={<Soon />} />
           <Route path='/settings' element={<Settings />} />
+          <Route path='/appearance' element={<Appearance />} />
         </Route>
 
       </Routes>
