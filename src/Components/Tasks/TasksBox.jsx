@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import EmptyState from './EmptyState'
+import EmptyState from '../Tasks/EmptyState'
 
 const TasksBox = () => {
   const [tasks, setTasks] = useState([])
@@ -10,8 +10,6 @@ const TasksBox = () => {
 
   return (
     <div className="space-y-2">
-      <p className="text-3xl font-bold text-white tracking-tight">Tasks</p>
-      <div className='dark:bg-tasksbox-bg h-auto min-h-137.5 w-[58vw] border-2 border-headings-dark rounded-[30px] p-6 flex flex-col justify-center'>
           {tasks.length === 0 ? (
             <EmptyState onAddClick={handleAddConditionalView} />
           ) : (
@@ -19,7 +17,6 @@ const TasksBox = () => {
           )}
 
       </div>
-    </div>
   )
 }
 
