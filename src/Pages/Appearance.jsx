@@ -7,7 +7,7 @@ const Tasks = () => {
       return (
         <div className='min-h-screen flex flex-col justify-center items-center'>
           <div className='flex flex-col items-center'>
-            <BoxLayout title="Appearance">
+            <BoxLayout title="Appearance Settings">
                <AppearanceBox/>
             </BoxLayout>
           </div>
