@@ -2,6 +2,7 @@ import React from 'react'
 import { MoveRight } from 'lucide-react'
 import { Link, Links } from 'react-router-dom'
 
+// TODO: Make the button go to sign up page instead of home later when i am done with making the signup page
 
 const Intro = () => {
     return (
