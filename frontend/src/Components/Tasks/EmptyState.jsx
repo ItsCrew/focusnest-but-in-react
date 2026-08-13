@@ -6,7 +6,7 @@ const EmptyState = ({ onAddClick }) => {
       <p className='text-white text-[23px] font-bold tracking-wide'>
         Nothing here. Add a task
       </p>
-      <button onClick={onAddClick} className='bg-[#62826B] hover:bg-[#4d6955] text-white font-medium px-8 py-3 rounded-xl transition-colors duration-200'>
+      <button onClick={onAddClick} className='bg-[#62826B] hover:bg-[#4d6955] text-white font-medium cursor-pointer px-8 py-3 rounded-xl transition-colors duration-200'>
         Add
       </button>
     </div>

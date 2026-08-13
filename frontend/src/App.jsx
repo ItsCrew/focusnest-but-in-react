@@ -10,7 +10,7 @@ import Appearance from './Pages/Appearance'
 
 const App = () => {
   return (
-    <div className='min-h-screen w-full bg-background-dark text-font-dark font-sans'>
+    <div className='min-h-screen w-full dark:bg-background-dark bg-background-version-light dark:text-font-dark text-font-version-light font-sans'>
       <Routes>
         <Route path="/" element={<Page />}/>
         <Route element={<AppShell />}>
