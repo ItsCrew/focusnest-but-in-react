@@ -7,7 +7,7 @@ const Timer = ({activeButton, handleMode}) => {
     <div className='flex justify-center items-center'>
       <div className='flex justify-center items-center gap-3 font-medium'>
         <button onClick={()=> { handleMode(1)}
-        } className={`${activeButton === 1 ? 'bg-buttonsfocus-bg' : 'bg-white'} text-black h-13.75 w-30 rounded-2xl cursor-pointer hover:-translate-y-1.25 transition-all duration-300 ease`}>Pomodoro</button>
+        } className={`${activeButton === 1 ? 'bg-buttonsfocus-bg' : 'bg-white'} text-black h-13.75 w-30 rounded-2xl cursor-pointer hover:-translate-y-1.25 transition-all duration-300 ease`}>Deep Work</button>
         <button onClick={()=> { handleMode(2)}
         } className={`${activeButton === 2 ? 'bg-buttonsfocus-bg' : 'bg-white'} text-black h-13.75 w-30 rounded-2xl cursor-pointer hover:-translate-y-1.25 transition-all duration-300 ease`}>Short Break</button>
         <button onClick={()=> { handleMode(3)}
