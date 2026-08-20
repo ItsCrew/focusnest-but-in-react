@@ -99,9 +99,9 @@ const AppearanceBox = () => {
                     className='flex items-center justify-between h-12 px-4 bg-navbg-dark rounded-xl border border-headings-dark cursor-pointer select-none text-base'
                 >
                     <span>{selectedUi}</span>
-                    <ChevronDown size={18} className={`transition-transform duration-300 ${uiOpen ? 'rotate-180' : ''}`} />
+                    {/* <ChevronDown size={18} className={`transition-transform duration-300 ${uiOpen ? 'rotate-180' : ''}`} /> */}
                 </div>
-                {uiOpen && (
+                {/* {uiOpen && (
                     <div className='absolute top-full left-0 right-0 mt-1 bg-background-dark border border-headings-dark rounded-xl z-20 overflow-hidden shadow-xl text-base'>
                         <div 
                             onClick={() => { setSelectedUi('Compact Mode'); setUiOpen(false); }}
@@ -116,7 +116,7 @@ const AppearanceBox = () => {
                             Comfy Mode
                         </div>
                     </div>
-                )}
+                )} */}
             </div>
 
             <hr className='my-3 border-border-version-dark/30' />
