@@ -32,6 +32,9 @@
   --color-input-bg: #1E1E1E;
   --color-slider-bg: #4caf50;
   --color-buttonsfocus-bg: #6b6868;
+  --color-modal-bg: #203829;
+  --color-modal-shadow-bg: #00000099;
+  --color-modal-border: #888;
   --font-sans: "Franklin Gothic Medium" ,"Inter", ui-sans-serif, system-ui, sans-serif;
 
   /* Light mode */

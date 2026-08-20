@@ -1,6 +1,7 @@
 import React from 'react'
 import BoxLayout from '../Components/Global/BoxLayout'
 import TasksBox from '../Components/Tasks/TasksBox'
+import AddTaskModal from '../Components/Tasks/AddTaskModal'
 
 const Tasks = () => {
       return (
@@ -8,6 +9,7 @@ const Tasks = () => {
           <div className='flex flex-col items-center'>
             <BoxLayout title="Tasks" className='justify-center'>
                <TasksBox/>
+               <AddTaskModal/>
             </BoxLayout>
           </div>
         </div>
