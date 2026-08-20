@@ -17,7 +17,7 @@ const AppearanceBox = () => {
             <label className='flex items-center gap-2 text-lg font-medium'>
                 <Palette size={20} className='text-headings-dark' /> Choose a Theme
             </label>
-            <div className='relative w-[20vw] min-w-[220px]'>
+            <div className='relative w-[20vw] min-w-55'>
                 <div 
                     onClick={() => setThemeOpen(!themeOpen)}
                     className='flex items-center justify-between h-12 px-4 bg-navbg-dark rounded-xl border border-headings-dark cursor-pointer select-none text-base'
@@ -55,7 +55,7 @@ const AppearanceBox = () => {
             <label className='flex items-center gap-2 text-lg font-medium'>
                 <Palette size={20} className='text-headings-dark' /> Background Options
             </label>
-            <div className='relative w-[20vw] min-w-[220px]'>
+            <div className='relative w-[20vw] min-w-55'>
                 <div 
                     onClick={() => setBgOpen(!bgOpen)}
                     className='flex items-center justify-between h-12 px-4 bg-navbg-dark rounded-xl border border-headings-dark cursor-pointer select-none text-base'
@@ -93,7 +93,7 @@ const AppearanceBox = () => {
             <label className='flex items-center gap-2 text-lg font-medium'>
                 <Palette size={20} className='text-headings-dark' /> UI Density
             </label>
-            <div className='relative w-[20vw] min-w-[220px]'>
+            <div className='relative w-[20vw] min-w-55'>
                 <div 
                     onClick={() => setUiOpen(!uiOpen)}
                     className='flex items-center justify-between h-12 px-4 bg-navbg-dark rounded-xl border border-headings-dark cursor-pointer select-none text-base'
@@ -125,7 +125,7 @@ const AppearanceBox = () => {
             <div className='flex justify-center items-center pt-2 pb-1'>
                 <button 
                     type='button'
-                    className='h-[45px] w-[150px] bg-headings-dark hover:bg-[#5e7f64] active:scale-95 hover:scale-105 text-white font-medium rounded-[10px] shadow-[0_4px_6px_rgba(0,0,0,0.1)] transition-all duration-200 cursor-pointer flex items-center justify-center text-base'
+                    className='h-11.25 w-37.5 bg-headings-dark hover:bg-[#5e7f64] active:scale-95 hover:scale-105 text-white font-medium rounded-[10px] shadow-[0_4px_6px_rgba(0,0,0,0.1)] transition-all duration-200 cursor-pointer flex items-center justify-center text-base'
                 >
                     Reset to Default
                 </button>
