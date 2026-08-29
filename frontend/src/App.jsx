@@ -7,10 +7,13 @@ import Tasks from './Pages/Tasks'
 import Soon from './Pages/Soon'
 import Settings from './Pages/Settings'
 import Appearance from './Pages/Appearance'
+import { useTheme } from './Context/ThemeContext'
 
 const App = () => {
+  const { bgType } = useTheme();
+  const isCustomBg = bgType !== 'none';
   return (
-    <div className='min-h-screen w-full dark:bg-background-dark bg-background-version-light dark:text-font-dark text-font-version-light font-sans'>
+    <div className={`min-h-screen w-full font-sans dark:text-font-dark text-font-version-light ${isCustomBg ? 'bg-transparent' : 'dark:bg-background-dark bg-background-version-light'}`}>
       <Routes>
         <Route path="/" element={<Page />}/>
         <Route element={<AppShell />}>
