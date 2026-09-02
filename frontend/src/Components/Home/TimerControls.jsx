@@ -6,7 +6,7 @@ import { useTimer } from '../../Context/TimerContext'
 
 const TimerControls = () => {
 
-    const { pomodoroMinutes, setPomodoroMinutes, shortBreakMinutes, setShortBreakMinutes, longBreakMinutes, setLongBreakMinutes, mode, timeLeft, isRunning, pomodoroCount, toggleTimer, resetTimer, changeMode } = useTimer();
+    const { isRunning, toggleTimer, resetTimer } = useTimer();
 
     const toggleControls = () => {
         setIsPaused(!isPaused)

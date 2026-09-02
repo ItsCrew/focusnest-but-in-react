@@ -16,6 +16,21 @@ export const TimerProvider = ({ children }) => {
       return Number(localStorage.getItem('LongBreakDuration')) || 10;
     });
 
+    const [notificationsEnabled, setnotificationsEnabled] = useState(() =>{
+        const saved = localStorage.getItem('BrowserNotifications')
+        return saved !== null ? saved == 'true' : true
+    })
+
+    const [autoStart, setAutoStart] = useState(() =>{
+        const saved = localStorage.getItem('AutoStart')
+        return saved !== null ? saved == 'true' : true
+    })
+
+    const [isPomodoroMode, setisPomodoroMode] = useState(() =>{
+        const saved = localStorage.getItem('PomodoroMode')
+        return saved !== null ? saved == 'true' : true
+    })
+
     const [mode, setMode] = useState('pomodoro')
     const [timeLeft, settimeLeft] = useState(() => {
       return (Number(localStorage.getItem('PomodoroDuration')) || 25) * 60;
@@ -49,7 +64,10 @@ export const TimerProvider = ({ children }) => {
         localStorage.setItem('PomodoroDuration', String(pomodoroMinutes))
         localStorage.setItem('ShortBreakDuration', String(shortBreakMinutes))
         localStorage.setItem('LongBreakDuration', String(longBreakMinutes))
-    }, [pomodoroMinutes, shortBreakMinutes, longBreakMinutes])
+        localStorage.setItem('PomodoroMode', String(isPomodoroMode));
+        localStorage.setItem('AutoStart', String(autoStart));
+        localStorage.setItem('BrowserNotifications', String(notificationsEnabled));
+    }, [pomodoroMinutes, shortBreakMinutes, longBreakMinutes, isPomodoroMode, autoStart, notificationsEnabled])
 
     const handleTimeCompletetion = () => {
         setisRunning(true)
@@ -101,7 +119,7 @@ export const TimerProvider = ({ children }) => {
     }, [pomodoroMinutes, shortBreakMinutes, longBreakMinutes]);
 
     return (
-        <TimerContext.Provider value={{pomodoroMinutes, setPomodoroMinutes, shortBreakMinutes, setShortBreakMinutes, longBreakMinutes, setLongBreakMinutes,  mode, timeLeft, isRunning, pomodoroCount, toggleTimer, resetTimer, changeMode}}>
+        <TimerContext.Provider value={{pomodoroMinutes, setPomodoroMinutes, shortBreakMinutes, setShortBreakMinutes, longBreakMinutes, setLongBreakMinutes,  mode, timeLeft, isRunning, pomodoroCount, toggleTimer, resetTimer, changeMode, isPomodoroMode, setisPomodoroMode}}>
             {children}
         </TimerContext.Provider>
     )

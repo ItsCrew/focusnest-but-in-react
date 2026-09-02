@@ -3,7 +3,7 @@ import { Circle } from 'lucide-react'
 import { useTimer } from '../../Context/TimerContext';
 
 const TimerDisplay = () => {
-  const { pomodoroMinutes, setPomodoroMinutes, shortBreakMinutes, setShortBreakMinutes, longBreakMinutes, setLongBreakMinutes, mode, timeLeft, isRunning, pomodoroCount, toggleTimer, resetTimer, changeMode } = useTimer();
+  const { timeLeft, pomodoroCount } = useTimer();
 
   const minutes = Math.floor(timeLeft / 60);
   const seconds = timeLeft % 60;

@@ -4,7 +4,7 @@ import { useTimer } from '../../Context/TimerContext';
 
 const Timer = ({activeButton, handleMode}) => {
 
-    const {pomodoroMinutes, setPomodoroMinutes, shortBreakMinutes, setShortBreakMinutes, longBreakMinutes, setLongBreakMinutes, mode, timeLeft, isRunning, pomodoroCount, toggleTimer, resetTimer, changeMode} = useTimer();
+    const {mode, changeMode} = useTimer();
 
   return (
     <div className='flex justify-center items-center'>

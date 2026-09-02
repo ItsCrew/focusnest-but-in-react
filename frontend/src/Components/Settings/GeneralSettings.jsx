@@ -5,7 +5,7 @@ import { useTimer } from '../../Context/TimerContext'
 
 const GeneralSettings = () => {
 
-  const {pomodoroMinutes, setPomodoroMinutes, shortBreakMinutes, setShortBreakMinutes, longBreakMinutes, setLongBreakMinutes, mode, timeLeft, isRunning, pomodoroCount, toggleTimer, resetTimer, changeMode} = useTimer();
+  const {pomodoroMinutes, setPomodoroMinutes, shortBreakMinutes, setShortBreakMinutes, longBreakMinutes, setLongBreakMinutes, isPomodoroMode, setisPomodoroMode} = useTimer();
 
   return (
     <div className='flex flex-col gap-2 '>
@@ -19,6 +19,7 @@ const GeneralSettings = () => {
           <div className="flex items-center gap-2">
             <input
               type="number"
+              disabled={isPomodoroMode}
               min="1"
               max="360"
               value={pomodoroMinutes || ''}
@@ -28,7 +29,7 @@ const GeneralSettings = () => {
                 if (val > 360) setPomodoroMinutes(360);
                 else if (val < 1) setPomodoroMinutes(1);
               }}
-              className='h-10 w-20 bg-input-bg border border-headings-dark rounded-[10px] text-center no-spinner'
+              className='h-10 w-20 bg-input-bg border border-headings-dark rounded-[10px] text-center no-spinner disabled:opacity-50 disabled:cursor-not-allowed'
             />
             <span className="text-sm text-neutral-400 w-12">Minutes</span>
           </div>
@@ -39,6 +40,7 @@ const GeneralSettings = () => {
           <div className="flex items-center gap-2">
             <input
               type="number"
+              disabled={isPomodoroMode}
               min="1"
               max="60"
               value={shortBreakMinutes || ''}
@@ -48,7 +50,7 @@ const GeneralSettings = () => {
                 if (val > 60) setShortBreakMinutes(60);
                 else if (val < 1) setShortBreakMinutes(1);
               }}
-              className='h-10 w-20 bg-input-bg border border-headings-dark rounded-[10px] text-center no-spinner'
+              className='h-10 w-20 bg-input-bg border border-headings-dark rounded-[10px] text-center no-spinner disabled:opacity-50 disabled:cursor-not-allowed'
             />
             <span className="text-sm text-neutral-400 w-12">Minutes</span>
           </div>
@@ -59,6 +61,7 @@ const GeneralSettings = () => {
           <div className="flex items-center gap-2">
             <input
               type="number"
+              disabled={isPomodoroMode}
               min="1"
               max="60"
               value={longBreakMinutes || ''}
@@ -68,7 +71,7 @@ const GeneralSettings = () => {
                 if (val > 60) setLongBreakMinutes(60);
                 else if (val < 1) setLongBreakMinutes(1);
               }}
-              className='h-10 w-20 bg-input-bg border border-headings-dark rounded-[10px] text-center no-spinner'
+              className='h-10 w-20 bg-input-bg border border-headings-dark rounded-[10px] text-center no-spinner disabled:opacity-50 disabled:cursor-not-allowed'
             />
             <span className="text-sm text-neutral-400 w-12">Minutes</span>
           </div>
@@ -85,7 +88,18 @@ const GeneralSettings = () => {
               </div>
             </div>
           </div>
-          <ToggleSwitch /> {/*onChange={(val) => console.log('Browser Notifications toggled:', val)} */}
+          <ToggleSwitch
+      checked={isPomodoroMode}
+      onChange={(val) => {
+        setisPomodoroMode(val);
+
+        if (val === true) {
+          setPomodoroMinutes(25);
+          setShortBreakMinutes(5);
+          setLongBreakMinutes(10);
+        }
+      }}
+    />
         </div>
 
       </div>
