@@ -5,7 +5,7 @@ import { useTimer } from '../../Context/TimerContext'
 
 const GeneralSettings = () => {
 
-  const {pomodoroMinutes, setPomodoroMinutes, shortBreakMinutes, setShortBreakMinutes, longBreakMinutes, setLongBreakMinutes} = useTimer();
+  const {pomodoroMinutes, setPomodoroMinutes, shortBreakMinutes, setShortBreakMinutes, longBreakMinutes, setLongBreakMinutes, mode, timeLeft, isRunning, pomodoroCount, toggleTimer, resetTimer, changeMode} = useTimer();
 
   return (
     <div className='flex flex-col gap-2 '>

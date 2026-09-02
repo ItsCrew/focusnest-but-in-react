@@ -4,12 +4,15 @@ import './index.css'
 import App from './App.jsx'
 import { BrowserRouter } from 'react-router-dom'
 import { ThemeProvider } from './Context/ThemeContext.jsx'
+import { TimerProvider } from './Context/TimerContext.jsx'
 
 createRoot(document.getElementById('root')).render(
     <ThemeProvider>
-  <BrowserRouter>
-      <App />
-  </BrowserRouter>
+        <TimerProvider>
+            <BrowserRouter>
+                <App />
+            </BrowserRouter>
+        </TimerProvider>
     </ThemeProvider>
 
 )
