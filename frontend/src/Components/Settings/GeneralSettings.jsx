@@ -11,8 +11,6 @@ const GeneralSettings = () => {
     <div className='flex flex-col gap-2 '>
       <h2 className='text-2xl'>Custom Timer</h2>
       <hr />
-
-      {/* TODO : See if i have to add data types or not */}
       <div className='flex flex-col gap-3 py-2'>
         <div className='flex justify-between items-center'>
           <p>Pomodoro</p>

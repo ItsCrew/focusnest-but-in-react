@@ -18,7 +18,7 @@ const TimerControls = () => {
                 <div className='flex justify-center items-center bg-white text-black h-13.75 w-30 rounded-2xl cursor-pointer hover:-translate-y-1.25 transition-all duration-300 ease' onClick={toggleTimer}>
                     {isRunning ? <Pause /> : <Play />}
                 </div>
-                <p onClick={resetTimer} className='cursor-pointer'><RotateCw /></p>
+                <p onClick={resetTimer} title='Reset Timer' className='cursor-pointer'><RotateCw /></p>
                 <Link className='cursor-pointer' to='/settings' aria-label='Open settings'>
                     <Settings />
                 </Link>

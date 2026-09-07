@@ -86,8 +86,8 @@ export const TimerProvider = ({ children }) => {
       } else {
         if (mode === 'longBreak') {
           setpomodoroCount(0);
-          setisRunning(false)
-          // TODO: Later make it so if in settings the auto start new session is enabled it continues automatically
+        setisRunning(autoStart)
+
         }
         setMode('pomodoro');
         settimeLeft(getDurations('pomodoro'));
@@ -119,7 +119,7 @@ export const TimerProvider = ({ children }) => {
     }, [pomodoroMinutes, shortBreakMinutes, longBreakMinutes]);
 
     return (
-        <TimerContext.Provider value={{pomodoroMinutes, setPomodoroMinutes, shortBreakMinutes, setShortBreakMinutes, longBreakMinutes, setLongBreakMinutes,  mode, timeLeft, isRunning, pomodoroCount, toggleTimer, resetTimer, changeMode, isPomodoroMode, setisPomodoroMode}}>
+        <TimerContext.Provider value={{pomodoroMinutes, setPomodoroMinutes, shortBreakMinutes, setShortBreakMinutes, longBreakMinutes, setLongBreakMinutes,  mode, timeLeft, isRunning, pomodoroCount, toggleTimer, resetTimer, changeMode, isPomodoroMode, setisPomodoroMode, autoStart, setAutoStart}}>
             {children}
         </TimerContext.Provider>
     )

@@ -1,7 +1,11 @@
 import React from 'react'
 import ToggleSwitch from '../Global/ToggleSwitch'
+import { useTimer } from '../../Context/TimerContext'
 
 const OtherSettings = () => {
+
+  const {autoStart, setAutoStart} = useTimer();
+
   return (
     <div className='flex flex-col gap-6 py-2'>
       <div className='flex justify-between items-center text-white'>
@@ -11,7 +15,7 @@ const OtherSettings = () => {
 
       <div className='flex justify-between items-center text-white'>
         <p>Auto-Start Next Session</p>
-        <ToggleSwitch />
+        <ToggleSwitch checked={autoStart} onChange={setAutoStart}/>
       </div>
 
       <div className='flex justify-between items-center text-white'>
