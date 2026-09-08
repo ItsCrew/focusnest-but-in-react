@@ -1,8 +1,11 @@
-import React, { createContext, useContext, useState, useEffect } from 'react'
+import React, { createContext, useContext, useState, useEffect, useRef } from 'react'
 
 const TimerContext = createContext()
 
 export const TimerProvider = ({ children }) => {
+
+    const CompletionSound = useRef(new Audio('/sounds/Completed3.mp3'));
+    const endTimeRef = useRef(null);
 
     const [pomodoroMinutes, setPomodoroMinutes] = useState(() => {
       return Number(localStorage.getItem('PomodoroDuration')) || 25;
@@ -18,7 +21,7 @@ export const TimerProvider = ({ children }) => {
 
     const [notificationsEnabled, setnotificationsEnabled] = useState(() =>{
         const saved = localStorage.getItem('BrowserNotifications')
-        return saved !== null ? saved == 'true' : true
+        return saved !== null ? saved == 'true' : false
     })
 
     const [autoStart, setAutoStart] = useState(() =>{
@@ -41,24 +44,50 @@ export const TimerProvider = ({ children }) => {
     const getDurations = (currentmode) => {
         if(currentmode == 'shortBreak') return shortBreakMinutes * 60
         if(currentmode == 'longBreak') return longBreakMinutes * 60
-        return pomodoroMinutes * 60
+        // return pomodoroMinutes * 60
+        return 10
     }
 
     const toggleTimer = () => {
-        setisRunning((prev) => !prev)
+        setisRunning((prev) => {
+            const nextRunning = !prev;
+            if (nextRunning) {
+                endTimeRef.current = Date.now() + timeLeft * 1000;
+            } else {
+                endTimeRef.current = null;
+            }
+            return nextRunning;
+        });
     }
 
     const resetTimer = () => {
-        setisRunning(false)
-        settimeLeft(getDurations(mode))
-        setpomodoroCount(0)
+        endTimeRef.current = null;
+        setisRunning(false);
+        settimeLeft(getDurations(mode));
+        setpomodoroCount(0);
     }
 
     const changeMode = (newMode) => {
-        setisRunning(false)
-        setMode(newMode)
-        settimeLeft(getDurations(newMode))
+        endTimeRef.current = null;
+        setisRunning(false);
+        setMode(newMode);
+        settimeLeft(getDurations(newMode));
     }
+
+    const NotificationsData = {
+            pomodoro: {
+                title: "Break Time! ☕",
+                body: `Awesome work! Time to step back and take a break`,
+            },
+            shortBreak: {
+                title: "Break Over! ⏱️",
+                body: `Hope you're refreshed. Ready to focus again?`,
+            },
+            longBreak: {
+                title: "Long Break Done! 🚀",
+                body: `Hope you feel refreshed! Ready to start a new cycle?`,
+            }
+        };
 
     useEffect(() => {
         localStorage.setItem('PomodoroDuration', String(pomodoroMinutes))
@@ -69,48 +98,105 @@ export const TimerProvider = ({ children }) => {
         localStorage.setItem('BrowserNotifications', String(notificationsEnabled));
     }, [pomodoroMinutes, shortBreakMinutes, longBreakMinutes, isPomodoroMode, autoStart, notificationsEnabled])
 
+    const sendNotification = (completedMode) => {
+        if (document.hasFocus() && !document.hidden) {
+            return;
+        }
+
+        if (!notificationsEnabled || !('Notification' in window) || Notification.permission !== 'granted') {
+            return;
+        }
+
+        const message = NotificationsData[completedMode]
+        if (message) {
+            new Notification(message.title, {
+                body: message.body,
+                silent: true,
+            })
+        }
+    }
+
     const handleTimeCompletetion = () => {
-        setisRunning(true)
+        if (CompletionSound.current) {
+            CompletionSound.current.currentTime = 0; 
+            CompletionSound.current.play().catch((err) => {
+                console.log('Audio playback prevented by browser:', err);
+            });
+        }
+
+        sendNotification(mode);
+
+        let nextMode = mode;
+        let nextDuration = 0;
+        let shouldAutoRun = true;
 
         if (mode === 'pomodoro') {
-        const nextCount = pomodoroCount + 1;
-        if (nextCount >= 4) {
-          setpomodoroCount(4);
-          setMode('longBreak');
-          settimeLeft(getDurations('longBreak'));
-        } else {
-          setpomodoroCount(nextCount);
-          setMode('shortBreak');
-          settimeLeft(getDurations('shortBreak'));
+            const nextCount = pomodoroCount + 1;
+            if (nextCount >= 4) {
+                setpomodoroCount(4);
+                nextMode = 'longBreak';
+                nextDuration = getDurations('longBreak');
+            } else {
+                setpomodoroCount(nextCount);
+                nextMode = 'shortBreak';
+                nextDuration = getDurations('shortBreak');
+            }
+            // Transitioning from work to break always auto-starts
+            shouldAutoRun = true;
+        } else if (mode === 'shortBreak') {
+            nextMode = 'pomodoro';
+            nextDuration = getDurations('pomodoro');
+            // Returning from short break to work always auto-starts
+            shouldAutoRun = true;
+        } else if (mode === 'longBreak') {
+            // Full 4-cycle session completed! Reset cycles
+            setpomodoroCount(0);
+            nextMode = 'pomodoro';
+            nextDuration = getDurations('pomodoro');
+            // Auto-start only controls starting a brand new session after the long break finishes
+            shouldAutoRun = autoStart;
         }
-      } else {
-        if (mode === 'longBreak') {
-          setpomodoroCount(0);
-        setisRunning(autoStart)
 
+        setMode(nextMode);
+        settimeLeft(nextDuration);
+
+        if (shouldAutoRun) {
+            endTimeRef.current = Date.now() + nextDuration * 1000;
+            setisRunning(true);
+        } else {
+            endTimeRef.current = null;
+            setisRunning(false);
         }
-        setMode('pomodoro');
-        settimeLeft(getDurations('pomodoro'));
-      }
     }
 
     useEffect(() => {
-        if (!isRunning) return
+        if (!isRunning) return;
 
-        const timer = setInterval(() => {
-            settimeLeft((prev)=> {
-                if (prev <= 1) {
-                    if (mode == 'pomodoro') {
-                    }
-                    handleTimeCompletetion()
-                    return 0;
-                }
-                return prev - 1;
-            })
-        }, 10);
+        const checkAndUpdateTimer = () => {
+            if (!endTimeRef.current) return;
+            const remaining = Math.round((endTimeRef.current - Date.now()) / 1000);
+            if (remaining <= 0) {
+                handleTimeCompletetion();
+            } else {
+                settimeLeft(remaining);
+            }
+        };
 
-        return () => clearInterval(timer);
-    }, [isRunning, mode, pomodoroCount])
+        const timer = setInterval(checkAndUpdateTimer, 1000);
+
+        const handleVisibilityChange = () => {
+            if (!document.hidden) {
+                checkAndUpdateTimer();
+            }
+        };
+
+        document.addEventListener('visibilitychange', handleVisibilityChange);
+
+        return () => {
+            clearInterval(timer);
+            document.removeEventListener('visibilitychange', handleVisibilityChange);
+        };
+    }, [isRunning, mode, pomodoroCount, autoStart]);
 
     useEffect(() => {
       if (!isRunning) {
@@ -119,7 +205,7 @@ export const TimerProvider = ({ children }) => {
     }, [pomodoroMinutes, shortBreakMinutes, longBreakMinutes]);
 
     return (
-        <TimerContext.Provider value={{pomodoroMinutes, setPomodoroMinutes, shortBreakMinutes, setShortBreakMinutes, longBreakMinutes, setLongBreakMinutes,  mode, timeLeft, isRunning, pomodoroCount, toggleTimer, resetTimer, changeMode, isPomodoroMode, setisPomodoroMode, autoStart, setAutoStart}}>
+        <TimerContext.Provider value={{pomodoroMinutes, setPomodoroMinutes, shortBreakMinutes, setShortBreakMinutes, longBreakMinutes, setLongBreakMinutes,  mode, timeLeft, isRunning, pomodoroCount, toggleTimer, resetTimer, changeMode, isPomodoroMode, setisPomodoroMode, autoStart, setAutoStart, notificationsEnabled, setnotificationsEnabled}}>
             {children}
         </TimerContext.Provider>
     )

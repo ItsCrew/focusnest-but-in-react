@@ -1,6 +1,5 @@
 import { Pause, Play, RotateCw, Settings } from 'lucide-react'
 import { Link } from 'react-router-dom'
-import { useState } from 'react'
 import { useTimer } from '../../Context/TimerContext'
 
 

@@ -4,13 +4,38 @@ import { useTimer } from '../../Context/TimerContext'
 
 const OtherSettings = () => {
 
-  const {autoStart, setAutoStart} = useTimer();
+  const {autoStart, setAutoStart, notificationsEnabled, setnotificationsEnabled} = useTimer();
+
+
+const handleNotificationToggle = (val) => {
+  if (val) {
+    if (!('Notification' in window)) {
+      // TODO: Change this into a pop up on the website instead
+      console.log('This browser does not support desktop notifications')
+      return;
+    }
+
+    if (Notification.permission !== 'granted') {
+      Notification.requestPermission().then((permission) => {
+        if (permission == 'granted') {
+          setnotificationsEnabled(true)
+        } else {
+          setnotificationsEnabled(false)
+        }
+      })
+      return;
+    }
+  }
+
+  setnotificationsEnabled(val);
+}
+  
 
   return (
     <div className='flex flex-col gap-6 py-2'>
       <div className='flex justify-between items-center text-white'>
         <p>Browser Notifications</p>
-        <ToggleSwitch/> {/*onChange={(val) => console.log('Browser Notifications toggled:', val)} */}
+        <ToggleSwitch checked={notificationsEnabled} onChange={handleNotificationToggle} />
       </div>
 
       <div className='flex justify-between items-center text-white'>
