@@ -44,8 +44,8 @@ export const TimerProvider = ({ children }) => {
     const getDurations = (currentmode) => {
         if(currentmode == 'shortBreak') return shortBreakMinutes * 60
         if(currentmode == 'longBreak') return longBreakMinutes * 60
-        // return pomodoroMinutes * 60
-        return 10
+        return pomodoroMinutes * 60
+        // return 10
     }
 
     const toggleTimer = () => {
@@ -141,19 +141,15 @@ export const TimerProvider = ({ children }) => {
                 nextMode = 'shortBreak';
                 nextDuration = getDurations('shortBreak');
             }
-            // Transitioning from work to break always auto-starts
             shouldAutoRun = true;
         } else if (mode === 'shortBreak') {
             nextMode = 'pomodoro';
             nextDuration = getDurations('pomodoro');
-            // Returning from short break to work always auto-starts
             shouldAutoRun = true;
         } else if (mode === 'longBreak') {
-            // Full 4-cycle session completed! Reset cycles
             setpomodoroCount(0);
             nextMode = 'pomodoro';
             nextDuration = getDurations('pomodoro');
-            // Auto-start only controls starting a brand new session after the long break finishes
             shouldAutoRun = autoStart;
         }
 
