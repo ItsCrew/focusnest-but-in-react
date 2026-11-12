@@ -5,13 +5,17 @@ import App from './App.jsx'
 import { BrowserRouter } from 'react-router-dom'
 import { ThemeProvider } from './Context/ThemeContext.jsx'
 import { TimerProvider } from './Context/TimerContext.jsx'
+import { TasksProvider } from './Context/TasksContext.jsx'
+
 
 createRoot(document.getElementById('root')).render(
     <ThemeProvider>
         <TimerProvider>
-            <BrowserRouter>
-                <App />
-            </BrowserRouter>
+            <TasksProvider>
+                <BrowserRouter>
+                    <App />
+                </BrowserRouter>
+            </TasksProvider>
         </TimerProvider>
     </ThemeProvider>
 

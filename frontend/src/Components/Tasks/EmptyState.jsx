@@ -2,7 +2,7 @@ import React from 'react'
 
 const EmptyState = ({ onAddClick }) => {
   return (
-    <div className='flex flex-col items-center justify-center h-full space-y-4 py-20'>
+    <div className='flex flex-1 flex-col items-center justify-center space-y-4'>
       <p className='text-white text-[23px] font-bold tracking-wide'>
         Nothing here. Add a task
       </p>

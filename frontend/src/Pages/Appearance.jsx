@@ -3,7 +3,7 @@ import BoxLayout from '../Components/Global/BoxLayout'
 import TasksBox from '../Components/Tasks/TasksBox'
 import AppearanceBox from '../Components/Appearance/AppearanceBox'
 
-const Tasks = () => {
+const Appearance = () => {
       return (
         <div className='min-h-screen flex flex-col justify-center items-center'>
           <div className='flex flex-col items-center'>
@@ -15,4 +15,4 @@ const Tasks = () => {
       )
     }
 
-export default Tasks
+export default Appearance
