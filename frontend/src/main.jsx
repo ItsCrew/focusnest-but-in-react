@@ -6,17 +6,20 @@ import { BrowserRouter } from 'react-router-dom'
 import { ThemeProvider } from './Context/ThemeContext.jsx'
 import { TimerProvider } from './Context/TimerContext.jsx'
 import { TasksProvider } from './Context/TasksContext.jsx'
+import { AuthProvider } from './Context/AuthContext.jsx'
 
 
 createRoot(document.getElementById('root')).render(
     <ThemeProvider>
-        <TimerProvider>
-            <TasksProvider>
-                <BrowserRouter>
-                    <App />
-                </BrowserRouter>
-            </TasksProvider>
-        </TimerProvider>
+        <AuthProvider>
+            <TimerProvider>
+                <TasksProvider>
+                    <BrowserRouter>
+                        <App />
+                    </BrowserRouter>
+                </TasksProvider>
+            </TimerProvider>
+        </AuthProvider>
     </ThemeProvider>
 
 )

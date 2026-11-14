@@ -1,11 +1,14 @@
 import React from 'react'
 import { Link, Links } from 'react-router-dom'
-import { Menu } from 'lucide-react'
+import { Menu, LogOut } from 'lucide-react'
+import { useAuth } from '../../Context/AuthContext'
+import GoogleLogo from '../../assets/google.svg'
 
 
 // TODO - Make is so the sidebar is actually hidden rather then just invisible. Since it can still be accessed by using tab. Not a big a deal though
 
 const Sidebar = ({ isOpen, onToggle }) => {
+    const { user, isAuthenticated, loading, login, logout } = useAuth()
 
     const navButtonClass = 'bg-navigation-buttons-dark text-black cursor-pointer w-50 h-9.5 rounded-full flex items-center justify-center hover:bg-navigation-hover-dark transition-all duration-300 ease hover:text-font-dark hover:-translate-y-1.25'
 
@@ -18,18 +21,59 @@ const Sidebar = ({ isOpen, onToggle }) => {
                     : 'w-0 px-0 py-6 border-0 opacity-0 pointer-events-none'
                 }`}
             >
-                <div className='w-48 flex flex-col items-center gap-6'>
-                    <div className='flex flex-col justify-center items-center font-semibold gap-0.5'>
-                        <Link className='cursor-pointer' to='/'>Focusnest</Link>
-                        <p className='text-xs bg-background-version-dark px-2.5 py-1 rounded-full text-font-version-dark border border-border-version-dark'>v2.2.1</p>
-                        <hr className='w-26 mt-2 ' />
+                <div className='h-full justify-between w-48 flex flex-col items-center gap-6'>
+                    <div>
+                        <div className='flex flex-col justify-center items-center font-semibold gap-0.5'>
+                            <Link className='cursor-pointer' to='/'>Focusnest</Link>
+                            <p className='text-xs bg-background-version-dark px-2.5 py-1 rounded-full text-font-version-dark border border-border-version-dark'>v2.2.1</p>
+                            <hr className='w-26 mt-2 ' />
+                        </div>
+                        <div className='flex flex-col gap-7 justify-center items-center py-2 text-base font-semibold'>
+                            <Link className={navButtonClass} to='/Home'>Home</Link>
+                            <Link className={navButtonClass} to='/Tasks'>Tasks</Link>
+                            <Link className={navButtonClass} to='/Notes'>Notes</Link>
+                            <Link className={navButtonClass} to='/Appearance'>Appearance</Link>
+                            <Link className={navButtonClass} to='/Settings'>Settings</Link>
+                        </div>
                     </div>
-                    <div className='flex flex-col gap-7 justify-center items-center py-2 text-base font-semibold'>
-                        <Link className={navButtonClass} to='/Home'>Home</Link>
-                        <Link className={navButtonClass} to='/Tasks'>Tasks</Link>
-                        <Link className={navButtonClass} to='/Notes'>Notes</Link>
-                        <Link className={navButtonClass} to='/Appearance'>Appearance</Link>
-                        <Link className={navButtonClass} to='/Settings'>Settings</Link>
+                    <div className='flex flex-col justify-center items-center py-2 text-base font-semibold'>
+                        {isAuthenticated ? (
+                            <div className='flex flex-col items-center w-50 gap-2.5'>
+                                <div className='flex items-center gap-2.5 w-full px-2.5 py-2 rounded-xl bg-background-version-dark border border-border-version-dark/50'>
+                                    {user?.profilePicture ? (
+                                        <img
+                                            src={user.profilePicture}
+                                            alt={user.displayName || 'Avatar'}
+                                            className='w-9 h-9 rounded-full border border-headings-dark shrink-0 object-cover'
+                                            referrerPolicy='no-referrer'
+                                        />
+                                    ) : (
+                                        <div className='w-9 h-9 rounded-full bg-headings-dark text-background-dark flex items-center justify-center font-bold text-sm shrink-0'>
+                                            {user?.displayName ? user.displayName[0].toUpperCase() : 'U'}
+                                        </div>
+                                    )}
+                                    <div className='flex flex-col min-w-0 flex-1 leading-tight text-left'>
+                                        <p className='text-sm font-semibold text-font-dark truncate'>{user?.displayName || 'User'}</p>
+                                        <p className='text-xs text-font-version-dark truncate'>{user?.email || ''}</p>
+                                    </div>
+                                </div>
+
+                                <button
+                                    onClick={logout}
+                                    className='cursor-pointer w-full h-9 rounded-full flex items-center justify-center gap-2 text-sm font-semibold border border-red-400/40 text-red-300 hover:bg-red-500/15 hover:border-red-400 transition-all duration-300 ease hover:-translate-y-0.5'
+                                >
+                                    <LogOut size={15} />
+                                    Log out
+                                </button>
+                            </div>
+                        ) : (
+                            <button
+                                onClick={login}
+                                className={`bg-white text-black cursor-pointer w-50 h-9.5 gap-1 rounded-full flex items-center justify-center transition-all hover:bg-gray-100 duration-300 ease hover:-translate-y-1.25`}>
+                                <img src={GoogleLogo} alt="Logo" width={30} height={30} />
+                                Sign in with Google
+                            </button>
+                        )}
                     </div>
                 </div>
             </div>
