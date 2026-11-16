@@ -40,6 +40,18 @@
   /* Light mode */
 
   --color-font-version-light: #1e2d24;
-  --color-background-version-light: #f2f5f3;
+  --color-background-version-light: #f4f6f4;
   --color-border-version-light: #6b8f71b3;
+
+  --color-background-light: #f4f6f4;
+  --color-font-light: #1b2e23;
+  --color-font-muted-light: #526b5c;
+  --color-headings-light: #4a7c59;
+  --color-box-bg-light: #ffffff;
+  --color-navbg-light: #ffffff;
+  --color-navigation-buttons-light: #e4eee6;
+  --color-navigation-hover-light: #d1e3d5;
+  --color-input-bg-light: #f7faf7;
+  --color-item-bg-light: #f8faf8;
+  --color-item-hover-light: #edf3ee;
 }

@@ -15,12 +15,14 @@ const Theme = () => {
     setTheme(isDark ? 'light' : 'dark')
   }
 
+    const label = isDark ? 'Switch to light mode' : 'Switch to dark mode'
+
   return (
     <button
       type='button'
       onClick={toggleTheme}
-      aria-label='Toggle theme'
-      title='Toggle theme'
+      aria-label={label}
+      title={label}
       className='fixed top-4 right-4 sm:top-5 sm:right-5 cursor-pointer select-none z-30 bg-white rounded-full p-1.5 shadow-lg hover:shadow-xl transition-all duration-300'
     >
       {isDark ? (

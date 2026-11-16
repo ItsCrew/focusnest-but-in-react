@@ -13,7 +13,7 @@ const App = () => {
   const { bgType } = useTheme();
   const isCustomBg = bgType !== 'none';
   return (
-    <div className={`min-h-screen w-full font-sans dark:text-font-dark text-font-version-light ${isCustomBg ? 'bg-transparent' : 'dark:bg-background-dark bg-background-version-light'}`}>
+    <div className={`min-h-screen w-full font-sans dark:text-font-dark text-font-light ${isCustomBg ? 'bg-transparent' : 'dark:bg-background-dark bg-background-light'}`}>
       <Routes>
         <Route path="/" element={<Page />}/>
         <Route element={<AppShell />}>

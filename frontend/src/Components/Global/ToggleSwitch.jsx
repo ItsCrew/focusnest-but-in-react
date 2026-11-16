@@ -23,9 +23,12 @@ const ToggleSwitch = ({ defaultChecked = false, checked, onChange }) => {
   return (
     <button
       type="button"
+      role="switch"
+      aria-checked={isToggled}
+      title={isToggled ? "Enabled (click to toggle)" : "Disabled (click to toggle)"}
       onClick={handleToggle}
       className={`relative inline-flex h-7 w-12 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none ${
-        isToggled ? 'bg-slider-bg' : 'bg-neutral-600'
+        isToggled ? 'bg-slider-bg' : 'dark:bg-neutral-600 bg-neutral-300'
       }`}
     >
       <span

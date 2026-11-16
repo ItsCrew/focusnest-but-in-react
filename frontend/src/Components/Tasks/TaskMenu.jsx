@@ -9,16 +9,17 @@ const menuItems = [
 ];
 const TaskMenu = ({ onDelete, onToggleActive, isActive, onEdit, onChooseColor, onRemoveColor, hasColor }) => {
     return (
-        <div className='flex flex-col bg-navbg-dark border border-headings-dark rounded-xl shadow-xl p-1 w-40'>
+        <div className='flex flex-col dark:bg-navbg-dark bg-white border dark:border-headings-dark border-headings-light/40 rounded-xl shadow-2xl p-1 w-40'>
             {menuItems.map(({ label, icon: Icon, id, danger }) => {
-                const getLabel = () => {
-                    if (id === 'active') return isActive ? 'Set Inactive' : 'Set Active';
-                    if (id === 'color') return hasColor ? 'Remove Color' : 'Choose Color';
-                    return label;
-                };
+                const itemLabel = id === 'active' 
+                    ? (isActive ? 'Set Inactive' : 'Set Active')
+                    : id === 'color' 
+                    ? (hasColor ? 'Remove Color' : 'Choose Color')
+                    : label;
 
                 return (
                     <button
+                        type="button"
                         onClick={() => {
                             if (id === 'delete' && onDelete) onDelete();
                             if (id === 'active' && onToggleActive) onToggleActive();
@@ -29,17 +30,18 @@ const TaskMenu = ({ onDelete, onToggleActive, isActive, onEdit, onChooseColor, o
                             }
                         }}
                         key={id}
-                        className={`flex items-center gap-2 px-3 py-2 text-sm rounded-lg cursor-pointer transition-colors w-full ${danger
-                            ? 'text-red-400 hover:bg-red-500/10'
-                            : 'text-neutral-200 hover:bg-white/10'
+                        title={itemLabel}
+                        aria-label={itemLabel}
+                        className={`flex items-center gap-2 px-3 py-2 text-sm rounded-lg cursor-pointer transition-colors w-full font-medium ${danger
+                            ? 'text-red-500 hover:bg-red-500/10'
+                            : 'dark:text-neutral-200 text-font-light dark:hover:bg-white/10 hover:bg-neutral-100'
                             }`}
                     >
                         <Icon size={16} />
-                        <span>{getLabel()}</span>
+                        <span>{itemLabel}</span>
                     </button>
                 );
             })}
-
         </div>
     )
 }

@@ -19,9 +19,9 @@ const TaskItem = ({ task }) => {
   }, [task.task])
 
   const priorityStyles = {
-    P0: 'bg-red-500/20 border-red-400 text-red-400',
-    P1: 'bg-amber-500/20 border-amber-400 text-amber-400',
-    P2: 'bg-gray-500/20 border-gray-400 text-gray-400',
+    P0: 'dark:bg-red-500/20 dark:border-red-400 dark:text-red-400 bg-red-50 border-red-500 text-red-600',
+    P1: 'dark:bg-amber-500/20 dark:border-amber-400 dark:text-amber-400 bg-amber-50 border-amber-500 text-amber-700',
+    P2: 'dark:bg-gray-500/20 dark:border-gray-400 dark:text-gray-400 bg-slate-50 border-slate-400 text-slate-700',
   }
 
   const handleDelete = () => {
@@ -85,7 +85,7 @@ const TaskItem = ({ task }) => {
         setPriorityOpen(false)
       }}
       style={task.color ? { backgroundColor: task.color } : undefined}
-      className={`flex justify-between px-3 sm:px-4 border border-headings-dark ${task.color ? '' : 'hover:bg-white/5'} transition-all rounded-[10px] h-12 items-center text-[15px] sm:text-[16px] gap-1 sm:gap-2`}
+      className={`flex justify-between px-3 sm:px-4 border dark:border-headings-dark border-headings-light/30 ${task.color ? '' : 'dark:bg-transparent bg-item-bg-light hover:bg-item-hover-light dark:hover:bg-white/5'} transition-all rounded-[10px] h-12 items-center text-[15px] sm:text-[16px] gap-1 sm:gap-2 shadow-2xs`}
     >
       {/* Hidden native color picker */}
       <input
@@ -97,16 +97,21 @@ const TaskItem = ({ task }) => {
       />
 
       <div className="flex items-center gap-2 flex-1 min-w-0 mr-1 sm:mr-2">
-        <div
+        <button
+          type="button"
+          role="checkbox"
+          aria-checked={task.completed}
+          title={task.completed ? "Mark task as incomplete" : "Mark task as complete"}
+          aria-label={task.completed ? "Mark task as incomplete" : "Mark task as complete"}
           onClick={() => toggleTask(task.id)}
           className={`w-4.5 h-4.5 rounded-md border-2 flex items-center justify-center cursor-pointer transition-all duration-200 shrink-0 ${
             task.completed
-              ? 'bg-headings-dark border-headings-dark text-white'
-              : 'border-headings-dark/60 hover:border-headings-dark'
+              ? 'dark:bg-headings-dark bg-headings-light dark:border-headings-dark border-headings-light text-white'
+              : 'dark:border-headings-dark/60 border-headings-light/60 hover:border-headings-light dark:hover:border-headings-dark'
           }`}
         >
           {task.completed && <Check size={12} strokeWidth={3.5} />}
-        </div>
+        </button>
 
         {isEditing ? (
           <input
@@ -116,12 +121,12 @@ const TaskItem = ({ task }) => {
             onKeyDown={handleEditKeyDown}
             onBlur={handleSaveEdit}
             autoFocus
-            className="bg-transparent border-b border-headings-dark text-font-dark focus:outline-none text-[16px] px-1 py-0.5 w-full"
+            className="bg-transparent border-b dark:border-headings-dark border-headings-light dark:text-font-dark text-font-light focus:outline-none text-[16px] px-1 py-0.5 w-full font-medium"
           />
         ) : (
           <p
             className={`transition-all duration-200 truncate ${
-              task.completed ? 'line-through text-neutral-400 opacity-60' : 'text-font-dark'
+              task.completed ? 'line-through text-neutral-400 opacity-60' : 'dark:text-font-dark text-font-light font-medium'
             }`}
           >
             {task.task}
@@ -138,6 +143,9 @@ const TaskItem = ({ task }) => {
                 setContextMenuPos(null)
                 setMenuOpen(false)
               }}
+              title={`Priority: ${priority} (click to change)`}
+              role="button"
+              tabIndex={0}
               className={`flex justify-center items-center h-7.5 sm:h-8 min-w-13 sm:min-w-15 px-1.5 sm:px-2 rounded-[15px] border-2 cursor-pointer select-none font-semibold text-xs sm:text-sm transition-all ${priorityStyles[priority]} ${
                 task.completed ? 'opacity-40 pointer-events-none' : 'opacity-100'
               }`}
@@ -148,23 +156,28 @@ const TaskItem = ({ task }) => {
             {priorityOpen && (
               <>
                 <div onClick={() => setPriorityOpen(false)} className="fixed inset-0 z-20" />
-                <div className="absolute top-full left-0 mt-1.5 w-full bg-navbg-dark border border-headings-dark rounded-xl overflow-hidden shadow-xl z-20">
-                  <div onClick={() => { setPriority('P0'); setPriorityOpen(false); }} className="px-3 py-2 text-center font-semibold text-sm text-red-400 hover:bg-white/10 cursor-pointer">P0</div>
-                  <div onClick={() => { setPriority('P1'); setPriorityOpen(false); }} className="px-3 py-2 text-center font-semibold text-sm text-amber-400 hover:bg-white/10 cursor-pointer">P1</div>
-                  <div onClick={() => { setPriority('P2'); setPriorityOpen(false); }} className="px-3 py-2 text-center font-semibold text-sm text-gray-400 hover:bg-white/10 cursor-pointer">P2</div>
+                <div className="absolute top-full left-0 mt-1.5 w-full dark:bg-navbg-dark bg-white border dark:border-headings-dark border-headings-light/40 rounded-xl overflow-hidden shadow-xl z-20">
+                  <div onClick={() => { setPriority('P0'); setPriorityOpen(false); }} className="px-3 py-2 text-center font-semibold text-sm text-red-500 hover:bg-red-500/10 cursor-pointer">P0</div>
+                  <div onClick={() => { setPriority('P1'); setPriorityOpen(false); }} className="px-3 py-2 text-center font-semibold text-sm text-amber-500 hover:bg-amber-500/10 cursor-pointer">P1</div>
+                  <div onClick={() => { setPriority('P2'); setPriorityOpen(false); }} className="px-3 py-2 text-center font-semibold text-sm text-neutral-500 hover:bg-neutral-500/10 cursor-pointer">P2</div>
                 </div>
               </>
             )}
           </div>
           <div className="relative">
-            <MoreVertical
+            <button
+              type="button"
               onClick={() => {
                 setMenuOpen(!menuOpen)
                 setContextMenuPos(null)
                 setPriorityOpen(false)
               }}
-              className="cursor-pointer text-neutral-400 hover:text-white transition-colors"
-            />
+              title="Task options"
+              aria-label="Task options"
+              className="cursor-pointer text-neutral-400 hover:text-font-light dark:hover:text-white transition-colors p-1 flex items-center justify-center"
+            >
+              <MoreVertical size={20} />
+            </button>
             {menuOpen && (
               <>
                 <div onClick={() => setMenuOpen(false)} className="fixed inset-0 z-20" />

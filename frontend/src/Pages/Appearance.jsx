@@ -1,6 +1,5 @@
 import React from 'react'
 import BoxLayout from '../Components/Global/BoxLayout'
-import TasksBox from '../Components/Tasks/TasksBox'
 import AppearanceBox from '../Components/Appearance/AppearanceBox'
 
 const Appearance = () => {

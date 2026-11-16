@@ -33,20 +33,19 @@ const handleNotificationToggle = (val) => {
 
   return (
     <div className='flex flex-col gap-6 py-2'>
-      <div className='flex justify-between items-center text-white'>
+      <div className='flex justify-between items-center dark:text-white text-font-light font-medium'>
         <p>Browser Notifications</p>
         <ToggleSwitch checked={notificationsEnabled} onChange={handleNotificationToggle} />
       </div>
 
-      <div className='flex justify-between items-center text-white'>
+      <div className='flex justify-between items-center dark:text-white text-font-light font-medium'>
         <p>Auto-Start Next Session</p>
         <ToggleSwitch checked={autoStart} onChange={setAutoStart}/>
       </div>
 
-      <div className='flex justify-between items-center text-white'>
+      <div className='flex justify-between items-center dark:text-white text-font-light font-medium'>
         <p>Sounds</p>
-        {/* <ToggleSwitch onChange={(val) => console.log('Sounds toggled:', val)} /> */}
-        <p>Coming Soon!</p>
+        <p className='dark:text-neutral-400 text-neutral-500 text-sm'>Coming Soon!</p>
       </div>
     </div>
   )

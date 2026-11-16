@@ -19,10 +19,13 @@ const TasksBox = ({ onOpenModal }) => {
           ))}
           <div className='flex justify-center mt-2'>
             <button
+              type="button"
               onClick={() => {
                 setIsClearModalOpen(true)
               }}
-              className='h-11.25 w-25 rounded-[10px] text-white font-medium text-base bg-headings-dark hover:bg-[#5e7f64] hover:scale-105 active:scale-95 transition-all duration-200 cursor-pointer shadow-[0_4px_6px_rgba(0,0,0,0.1)]'>
+              title="Clear all tasks"
+              aria-label="Clear all tasks"
+              className='h-11.25 w-25 rounded-[10px] text-white font-medium text-base dark:bg-headings-dark bg-headings-light hover:bg-[#34523b] dark:hover:bg-[#5e7f64] hover:scale-105 active:scale-95 transition-all duration-200 cursor-pointer shadow-[0_4px_6px_rgba(0,0,0,0.1)]'>
               Clear
             </button>
           </div>
