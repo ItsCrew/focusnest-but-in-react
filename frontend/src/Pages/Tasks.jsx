@@ -11,8 +11,8 @@ const Tasks = () => {
   const {tasks} = useTasks();
 
   return (
-    <div className='min-h-screen flex flex-col justify-center items-center'>
-      <div className='flex flex-col items-center'>
+    <div className='min-h-screen flex flex-col justify-center items-center py-10 px-2 sm:px-4'>
+      <div className='flex flex-col items-center w-full'>
         <BoxLayout
       title="Tasks"
       headerAction={

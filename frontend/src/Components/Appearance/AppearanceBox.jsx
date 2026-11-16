@@ -33,7 +33,7 @@ const AppearanceBox = () => {
             <label className='flex items-center gap-2 text-lg font-medium'>
                 <Palette size={20} className='text-headings-dark' /> Choose a Theme
             </label>
-            <div className='relative w-[20vw] min-w-55'>
+            <div className='relative w-full sm:w-64 max-w-xs'>
                 <div
                     onClick={() => setThemeOpen(!themeOpen)}
                     className='flex items-center justify-between h-12 px-4 bg-navbg-dark rounded-xl border border-headings-dark cursor-pointer select-none text-base'
@@ -77,7 +77,7 @@ const AppearanceBox = () => {
             <label className='flex items-center gap-2 text-lg font-medium'>
                 <Palette size={20} className='text-headings-dark' /> Background Options
             </label>
-            <div className='relative w-[20vw] min-w-55'>
+            <div className='relative w-full sm:w-64 max-w-xs'>
                 <input type="color" className='hidden' ref={colorInputRef} onChange={(e) => { setSolidColor(e.target.value); setbgType('solid') }} />
                 <div
                     onClick={() => setBgOpen(!bgOpen)}
@@ -122,7 +122,7 @@ const AppearanceBox = () => {
             <label className='flex items-center gap-2 text-lg font-medium'>
                 <Palette size={20} className='text-headings-dark' /> UI Density
             </label>
-            <div className='relative w-[20vw] min-w-55'>
+            <div className='relative w-full sm:w-64 max-w-xs'>
                 <div
                     onClick={() => setUiOpen(!uiOpen)}
                     className='flex items-center justify-between h-12 px-4 bg-navbg-dark rounded-xl border border-headings-dark select-none text-base'

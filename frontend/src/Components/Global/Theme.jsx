@@ -16,15 +16,19 @@ const Theme = () => {
   }
 
   return (
-    <div>
-      <div onClick={toggleTheme} className='fixed top-5 right-5 cursor-pointer select-none z-50'>
-        {isDark ? (
-          <Sun color="#0f172a" size={50} className="bg-white rounded-full p-1.5 hover:rotate-180 transition-all duration-300 ease"/>
-        ) : (
-          <Moon color="#0f172a" size={50} className="bg-white rounded-full p-1.5 hover:scale-110 transition-all duration-200"/>
-        )}
-      </div>
-    </div>
+    <button
+      type='button'
+      onClick={toggleTheme}
+      aria-label='Toggle theme'
+      title='Toggle theme'
+      className='fixed top-4 right-4 sm:top-5 sm:right-5 cursor-pointer select-none z-30 bg-white rounded-full p-1.5 shadow-lg hover:shadow-xl transition-all duration-300'
+    >
+      {isDark ? (
+        <Sun color="#0f172a" size={36} className="sm:w-10 sm:h-10 hover:rotate-180 transition-all duration-300 ease"/>
+      ) : (
+        <Moon color="#0f172a" size={36} className="sm:w-10 sm:h-10 hover:scale-110 transition-all duration-200"/>
+      )}
+    </button>
   )
 }
 

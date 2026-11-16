@@ -85,7 +85,7 @@ const TaskItem = ({ task }) => {
         setPriorityOpen(false)
       }}
       style={task.color ? { backgroundColor: task.color } : undefined}
-      className={`flex justify-between px-4 border border-headings-dark ${task.color ? '' : 'hover:bg-white/5'} transition-all rounded-[10px] h-12 items-center text-[16px] gap-1`}
+      className={`flex justify-between px-3 sm:px-4 border border-headings-dark ${task.color ? '' : 'hover:bg-white/5'} transition-all rounded-[10px] h-12 items-center text-[15px] sm:text-[16px] gap-1 sm:gap-2`}
     >
       {/* Hidden native color picker */}
       <input
@@ -96,7 +96,7 @@ const TaskItem = ({ task }) => {
         className="hidden"
       />
 
-      <div className="flex items-center gap-2 flex-1 min-w-0 mr-2">
+      <div className="flex items-center gap-2 flex-1 min-w-0 mr-1 sm:mr-2">
         <div
           onClick={() => toggleTask(task.id)}
           className={`w-4.5 h-4.5 rounded-md border-2 flex items-center justify-center cursor-pointer transition-all duration-200 shrink-0 ${
@@ -138,7 +138,7 @@ const TaskItem = ({ task }) => {
                 setContextMenuPos(null)
                 setMenuOpen(false)
               }}
-              className={`flex justify-center items-center h-8 min-w-15 px-2 rounded-[15px] border-2 cursor-pointer select-none font-semibold text-sm transition-all ${priorityStyles[priority]} ${
+              className={`flex justify-center items-center h-7.5 sm:h-8 min-w-13 sm:min-w-15 px-1.5 sm:px-2 rounded-[15px] border-2 cursor-pointer select-none font-semibold text-xs sm:text-sm transition-all ${priorityStyles[priority]} ${
                 task.completed ? 'opacity-40 pointer-events-none' : 'opacity-100'
               }`}
             >

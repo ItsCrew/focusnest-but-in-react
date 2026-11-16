@@ -8,7 +8,8 @@ const SIDEBAR_WIDTH = '18rem'
 const AppShell = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(() => {
     const savedState = localStorage.getItem('Sidebar')
-    return savedState !== null ? savedState === 'true' : true
+    if (savedState !== null) return savedState === 'true'
+    return typeof window !== 'undefined' ? window.innerWidth >= 768 : true
   })
 
   const toggleSidebar = () => {
@@ -20,15 +21,13 @@ const AppShell = () => {
   }
 
   return (
-    <div className='relative min-h-screen w-full'>
+    <div className='relative min-h-screen w-full overflow-x-hidden'>
       <Sidebar isOpen={isSidebarOpen} onToggle={toggleSidebar} />
       <Theme />
       <main
-        className='min-h-screen transition-all duration-300'
-        style={{
-          marginLeft: isSidebarOpen ? SIDEBAR_WIDTH : '0',
-          width: isSidebarOpen ? `calc(100% - ${SIDEBAR_WIDTH})` : '100%'
-        }}
+        className={`min-h-screen transition-all duration-300 w-full ${
+          isSidebarOpen ? 'md:ml-72 md:w-[calc(100%-18rem)]' : 'ml-0 w-full'
+        }`}
       >
         <Outlet />
       </main>

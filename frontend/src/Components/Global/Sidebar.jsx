@@ -12,30 +12,43 @@ const Sidebar = ({ isOpen, onToggle }) => {
 
     const navButtonClass = 'bg-navigation-buttons-dark text-black cursor-pointer w-50 h-9.5 rounded-full flex items-center justify-center hover:bg-navigation-hover-dark transition-all duration-300 ease hover:text-font-dark hover:-translate-y-1.25'
 
-    return (
-        <div className='fixed top-0 left-0 z-20 flex py-4 px-4 items-start'>
-            <div className={`flex flex-col gap-6 h-[95vh] items-center text-lg bg-navbg-dark rounded-2xl transition-all duration-300 ease-in-out overflow-hidden
+    const handleNavClick = () => {
+        if (typeof window !== 'undefined' && window.innerWidth < 768) {
+            onToggle()
+        }
+    }
 
-                ${isOpen
-                    ? 'w-64 px-8 py-6 border-2 border-headings-dark opacity-100'
-                    : 'w-0 px-0 py-6 border-0 opacity-0 pointer-events-none'
-                }`}
-            >
-                <div className='h-full justify-between w-48 flex flex-col items-center gap-6'>
-                    <div>
-                        <div className='flex flex-col justify-center items-center font-semibold gap-0.5'>
-                            <Link className='cursor-pointer' to='/'>Focusnest</Link>
-                            <p className='text-xs bg-background-version-dark px-2.5 py-1 rounded-full text-font-version-dark border border-border-version-dark'>v2.2.1</p>
-                            <hr className='w-26 mt-2 ' />
+    return (
+        <>
+            {isOpen && (
+                <div
+                    onClick={onToggle}
+                    className='fixed inset-0 bg-black/60 z-40 md:hidden backdrop-blur-xs transition-opacity cursor-pointer'
+                />
+            )}
+            <div className='fixed top-0 left-0 z-50 flex py-4 px-4 items-start pointer-events-none'>
+                <div className={`flex flex-col gap-6 h-[95vh] items-center text-lg bg-navbg-dark rounded-2xl transition-all duration-300 ease-in-out overflow-hidden shadow-2xl pointer-events-auto
+
+                    ${isOpen
+                        ? 'w-64 px-8 py-6 border-2 border-headings-dark opacity-100'
+                        : 'w-0 px-0 py-6 border-0 opacity-0 pointer-events-none'
+                    }`}
+                >
+                    <div className='h-full justify-between w-48 flex flex-col items-center gap-6'>
+                        <div>
+                            <div className='flex flex-col justify-center items-center font-semibold gap-0.5'>
+                                <Link onClick={handleNavClick} className='cursor-pointer' to='/'>Focusnest</Link>
+                                <p className='text-xs bg-background-version-dark px-2.5 py-1 rounded-full text-font-version-dark border border-border-version-dark'>v2.2.1</p>
+                                <hr className='w-26 mt-2 ' />
+                            </div>
+                            <div className='flex flex-col gap-7 justify-center items-center py-2 text-base font-semibold'>
+                                <Link onClick={handleNavClick} className={navButtonClass} to='/Home'>Home</Link>
+                                <Link onClick={handleNavClick} className={navButtonClass} to='/Tasks'>Tasks</Link>
+                                <Link onClick={handleNavClick} className={navButtonClass} to='/Notes'>Notes</Link>
+                                <Link onClick={handleNavClick} className={navButtonClass} to='/Appearance'>Appearance</Link>
+                                <Link onClick={handleNavClick} className={navButtonClass} to='/Settings'>Settings</Link>
+                            </div>
                         </div>
-                        <div className='flex flex-col gap-7 justify-center items-center py-2 text-base font-semibold'>
-                            <Link className={navButtonClass} to='/Home'>Home</Link>
-                            <Link className={navButtonClass} to='/Tasks'>Tasks</Link>
-                            <Link className={navButtonClass} to='/Notes'>Notes</Link>
-                            <Link className={navButtonClass} to='/Appearance'>Appearance</Link>
-                            <Link className={navButtonClass} to='/Settings'>Settings</Link>
-                        </div>
-                    </div>
                     <div className='flex flex-col justify-center items-center py-2 text-base font-semibold'>
                         {isAuthenticated ? (
                             <div className='flex flex-col items-center w-50 gap-2.5'>
@@ -77,8 +90,16 @@ const Sidebar = ({ isOpen, onToggle }) => {
                     </div>
                 </div>
             </div>
-            <Menu onClick={onToggle} size={32} className='m-2 cursor-pointer shrink-0' />
+            <button
+                type='button'
+                onClick={onToggle}
+                aria-label='Toggle navigation menu'
+                className='m-2 cursor-pointer shrink-0 text-white hover:text-headings-dark transition-colors pointer-events-auto'
+            >
+                <Menu size={32} />
+            </button>
         </div>
+        </>
     )
 }
 

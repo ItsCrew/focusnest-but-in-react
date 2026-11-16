@@ -8,8 +8,8 @@ const Home = () => {
 
 
   return (
-    <div className='min-h-screen flex flex-col justify-center items-center'>
-      <div className='flex flex-col items-center'>
+    <div className='min-h-screen flex flex-col justify-center items-center py-10 px-4'>
+      <div className='flex flex-col items-center w-full max-w-md'>
         <Timer/>
         <TimerDisplay/>
         <ActiveTask/>
