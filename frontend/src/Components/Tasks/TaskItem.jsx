@@ -85,7 +85,7 @@ const TaskItem = ({ task }) => {
         setPriorityOpen(false)
       }}
       style={task.color ? { backgroundColor: task.color } : undefined}
-      className={`flex justify-between px-3 sm:px-4 border dark:border-headings-dark border-headings-light/30 ${task.color ? '' : 'dark:bg-transparent bg-item-bg-light hover:bg-item-hover-light dark:hover:bg-white/5'} transition-all rounded-[10px] h-12 items-center text-[15px] sm:text-[16px] gap-1 sm:gap-2 shadow-2xs`}
+      className={`flex justify-between px-3 sm:px-4 border dark:border-headings-dark border-headings-light/30 ${task.color ? '' : 'dark:bg-transparent bg-item-bg-light hover:bg-item-hover-light dark:hover:bg-white/5'} transition-all rounded-[10px] min-h-12 py-2 items-center text-[15px] sm:text-[16px] gap-1 sm:gap-2 shadow-2xs`}
     >
       {/* Hidden native color picker */}
       <input
@@ -125,7 +125,7 @@ const TaskItem = ({ task }) => {
           />
         ) : (
           <p
-            className={`transition-all duration-200 truncate ${
+            className={`min-w-0 flex-1 [overflow-wrap:anywhere] [word-break:break-word] break-words leading-snug transition-all duration-200 ${
               task.completed ? 'line-through text-neutral-400 opacity-60' : 'dark:text-font-dark text-font-light font-medium'
             }`}
           >

@@ -7,6 +7,8 @@ import Tasks from './Pages/Tasks'
 import Soon from './Pages/Soon'
 import Settings from './Pages/Settings'
 import Appearance from './Pages/Appearance'
+import Welcome from './Pages/Welcome'
+import SignIn from './Pages/SignIn'
 import { useTheme } from './Context/ThemeContext'
 
 const App = () => {
@@ -16,6 +18,9 @@ const App = () => {
     <div className={`min-h-screen w-full font-sans dark:text-font-dark text-font-light ${isCustomBg ? 'bg-transparent' : 'dark:bg-background-dark bg-background-light'}`}>
       <Routes>
         <Route path="/" element={<Page />}/>
+        <Route path="/welcome" element={<Welcome />}/>
+        <Route path="/signin" element={<SignIn />}/>
+        <Route path="/login" element={<SignIn />}/>
         <Route element={<AppShell />}>
           <Route path='/home' element={<Home />} />
           <Route path='/tasks' element={<Tasks />} />

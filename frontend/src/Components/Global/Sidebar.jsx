@@ -42,11 +42,11 @@ const Sidebar = ({ isOpen, onToggle }) => {
                                 <hr className='w-26 mt-2 dark:border-white/20 border-neutral-200' />
                             </div>
                             <div className='flex flex-col gap-7 justify-center items-center py-2 text-base font-semibold'>
-                                <Link onClick={handleNavClick} title="Home" className={navButtonClass} to='/Home'>Home</Link>
-                                <Link onClick={handleNavClick} title="Tasks" className={navButtonClass} to='/Tasks'>Tasks</Link>
-                                <Link onClick={handleNavClick} title="Notes" className={navButtonClass} to='/Notes'>Notes</Link>
-                                <Link onClick={handleNavClick} title="Appearance" className={navButtonClass} to='/Appearance'>Appearance</Link>
-                                <Link onClick={handleNavClick} title="Settings" className={navButtonClass} to='/Settings'>Settings</Link>
+                                <Link onClick={handleNavClick} title="Home" className={navButtonClass} to='/home'>Home</Link>
+                                <Link onClick={handleNavClick} title="Tasks" className={navButtonClass} to='/tasks'>Tasks</Link>
+                                <Link onClick={handleNavClick} title="Notes" className={navButtonClass} to='/notes'>Notes</Link>
+                                <Link onClick={handleNavClick} title="Appearance" className={navButtonClass} to='/appearance'>Appearance</Link>
+                                <Link onClick={handleNavClick} title="Settings" className={navButtonClass} to='/settings'>Settings</Link>
                             </div>
                         </div>
                     <div className='flex flex-col justify-center items-center py-2 text-base font-semibold'>
