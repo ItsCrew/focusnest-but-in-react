@@ -55,3 +55,13 @@
   --color-item-bg-light: #f8faf8;
   --color-item-hover-light: #edf3ee;
 }
+
+html.dark {
+  background-color: #1e2d24;
+  color: #ededed;
+}
+
+html:not(.dark) {
+  background-color: #f4f6f4;
+  color: #1b2e23;
+}

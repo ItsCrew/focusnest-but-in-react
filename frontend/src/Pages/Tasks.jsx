@@ -15,7 +15,7 @@ const Tasks = () => {
 
   useEffect(() => {
     if (!loading && !isAuthenticated) {
-      navigate('/signin')
+      navigate('/signin', { replace: true })
     }
   }, [isAuthenticated, loading, navigate])
 
