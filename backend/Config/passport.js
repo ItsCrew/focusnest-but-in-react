@@ -16,7 +16,9 @@ passport.deserializeUser(async (id, done) => {
 })
 
 const getCallbackURL = () => {
-  if (process.env.NODE_ENV === 'production') return process.env.PROD_CALLBACK_URL || process.env.CALLBACK_URL;
+  if (process.env.NODE_ENV === 'production' || process.env.VERCEL) {
+    return process.env.PROD_CALLBACK_URL || process.env.CALLBACK_URL || 'https://focusnest-but-in-react.vercel.app/auth/google/callback';
+  }
   if (process.env.NODE_ENV === 'preview') return process.env.PREV_CALLBACK_URL || process.env.CALLBACK_URL;
   return process.env.CALLBACK_URL || 'http://localhost:5000/auth/google/callback';
 };

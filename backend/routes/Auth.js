@@ -9,10 +9,9 @@ router.get('/google',
 router.get('/google/callback',
     passport.authenticate('google', { failureRedirect: '/login' }),
     (req, res) => {
-        const clientUrl = process.env.NODE_ENV == 'production'
-        ? ''
-        : 'https://focusnest-but-in-react.vercel.app';
-        res.redirect(`${clientUrl}/tasks`)
+        const isProduction = process.env.NODE_ENV === 'production' || process.env.VERCEL;
+        const clientUrl = isProduction ? '' : 'http://localhost:5173';
+        res.redirect(`${clientUrl}/tasks`);
     }
 )
 
@@ -21,9 +20,8 @@ router.get('/logout', (req, res) => {
         if (err) {
             return res.status(500).json({ message: 'Error during logout' });
         }
-        const clientUrl = process.env.NODE_ENV == 'production'
-        ? ''
-        : 'https://focusnest-but-in-react.vercel.app';
+        const isProduction = process.env.NODE_ENV === 'production' || process.env.VERCEL;
+        const clientUrl = isProduction ? '' : 'http://localhost:5173';
         res.redirect(`${clientUrl}/home`);
     });
 });
