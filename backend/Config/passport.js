@@ -16,9 +16,9 @@ passport.deserializeUser(async (id, done) => {
 })
 
 const getCallbackURL = () => {
-  if (process.env.NODE_ENV === 'production') return process.env.PROD_CALLBACK_URL;
-  if (process.env.NODE_ENV === 'preview') return process.env.PREV_CALLBACK_URL;
-  return process.env.CALLBACK_URL; // Defaults to http://localhost:5000/auth/google/callback
+  if (process.env.NODE_ENV === 'production') return process.env.PROD_CALLBACK_URL || process.env.CALLBACK_URL;
+  if (process.env.NODE_ENV === 'preview') return process.env.PREV_CALLBACK_URL || process.env.CALLBACK_URL;
+  return process.env.CALLBACK_URL || 'http://localhost:5000/auth/google/callback';
 };
 
 passport.use(new Google({

@@ -10,25 +10,25 @@ const OtherSettings = () => {
 const handleNotificationToggle = (val) => {
   if (val) {
     if (!('Notification' in window)) {
-      // TODO: Change this into a pop up on the website instead
-      console.log('This browser does not support desktop notifications')
+      alert('Your browser does not support desktop notifications.');
       return;
     }
 
     if (Notification.permission !== 'granted') {
       Notification.requestPermission().then((permission) => {
-        if (permission == 'granted') {
-          setnotificationsEnabled(true)
+        if (permission === 'granted') {
+          setnotificationsEnabled(true);
         } else {
-          setnotificationsEnabled(false)
+          setnotificationsEnabled(false);
+          alert('Notification permission was not granted. Please enable notifications in your browser settings.');
         }
-      })
+      });
       return;
     }
   }
 
   setnotificationsEnabled(val);
-}
+};
   
 
   return (

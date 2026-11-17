@@ -5,8 +5,6 @@ import { useAuth } from '../../Context/AuthContext'
 import GoogleLogo from '../../assets/google.svg'
 
 
-// TODO - Make is so the sidebar is actually hidden rather then just invisible. Since it can still be accessed by using tab. Not a big a deal though
-
 const Sidebar = ({ isOpen, onToggle }) => {
     const { user, isAuthenticated, loading, login, logout } = useAuth()
 
@@ -30,8 +28,8 @@ const Sidebar = ({ isOpen, onToggle }) => {
                 <div className={`flex flex-col gap-6 h-[95vh] items-center text-lg dark:bg-navbg-dark bg-white rounded-2xl transition-all duration-300 ease-in-out overflow-hidden shadow-2xl pointer-events-auto
 
                     ${isOpen
-                        ? 'w-64 px-8 py-6 border-2 dark:border-headings-dark border-headings-light/40 opacity-100'
-                        : 'w-0 px-0 py-6 border-0 opacity-0 pointer-events-none'
+                        ? 'w-64 px-8 py-6 border-2 dark:border-headings-dark border-headings-light/40 opacity-100 visible'
+                        : 'w-0 px-0 py-6 border-0 opacity-0 pointer-events-none invisible'
                     }`}
                 >
                     <div className='h-full justify-between w-48 flex flex-col items-center gap-6'>

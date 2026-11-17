@@ -1,0 +1,18 @@
+{
+  "version": 2,
+  "outputDirectory": "frontend/dist",
+  "rewrites": [
+    {
+      "source": "/api/:match*",
+      "destination": "/api/index.js"
+    },
+    {
+      "source": "/auth/:match*",
+      "destination": "/api/index.js"
+    },
+    {
+      "source": "/((?!api/|auth/).*)",
+      "destination": "/index.html"
+    }
+  ]
+}
