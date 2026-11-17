@@ -11,7 +11,7 @@ router.get('/google/callback',
     (req, res) => {
         const clientUrl = process.env.NODE_ENV == 'production'
         ? ''
-        : 'http://localhost:5173';
+        : 'https://focusnest-but-in-react.vercel.app';
         res.redirect(`${clientUrl}/tasks`)
     }
 )
@@ -23,7 +23,7 @@ router.get('/logout', (req, res) => {
         }
         const clientUrl = process.env.NODE_ENV == 'production'
         ? ''
-        : 'http://localhost:5173';
+        : 'https://focusnest-but-in-react.vercel.app';
         res.redirect(`${clientUrl}/home`);
     });
 });
